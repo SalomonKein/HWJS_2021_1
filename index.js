@@ -1,17 +1,22 @@
 const Hamburger = function(size, stuffing ){
-    console.log(size.name===Hamburger.SIZE_SMALL.name);
+    try{
     if((size===Hamburger.SIZE_SMALL||size===Hamburger.SIZE_LARGE )){
     this.size = size
+    try{
         if((stuffing===Hamburger.STUFFING_CHEESE||stuffing===Hamburger.STUFFING_SALAD||stuffing===Hamburger.STUFFING_POTATO )){ this.stuffing = stuffing}
         else {
-            let message = `invalid stuffing ${stuffing.name} `
-            throw new HamburgerException(message);
+            throw new HamburgerException(`invalid stuffing ${stuffing.name}`);
+    }}
+        catch(error){
+            console.error("Error:", error.message);
         }
     
 }
     else {
-        let message = `invalid size ${size.name} `
-        throw new HamburgerException(message);
+        throw new HamburgerException(`invalid size ${size.name}`);
+    } }
+    catch(error){
+        console.error("Error:", error.message);
     }
   
 }
@@ -24,14 +29,15 @@ Hamburger.TOPPING_MAYO = {cost: 20, kall: 5, name:"TOPPING_MAYO"};
 Hamburger.TOPPING_SPICE = {cost: 15, kall: 0, name:"TOPPING_SPICE"};
 
 Hamburger.prototype.addTopping = function (topping){
-    if (this.topping){return this.topping2=topping}
-    this.topping = topping;
+    try{
     if((topping===Hamburger.TOPPING_MAYO||topping===Hamburger.TOPPING_SPICE)){ 
-        if (this.topping){return this.topping2=topping}
-        this.topping = topping;}
-        else {
-            let message = `invalid topping ${topping.name} `
-            throw new HamburgerException(message);
+       if (this.topping){return this.topping2=topping}
+       this.topping = topping;
+     }else {
+            throw new HamburgerException(`invalid topping ${topping.name}`);
+        }}
+        catch(error){
+            console.error("Error:", error.message);
         }
     
 }
@@ -42,16 +48,16 @@ Hamburger.prototype.removeTopping = function (topping){
 }
 
 Hamburger.prototype.calculatePrice = function () {
-    if (this.topping2&this.topping){return sum = this.size.cost+this.stuffing.cost+this.topping.cost+this.topping2.cost;}
-    if (this.topping2){return sum = this.size.cost+this.stuffing.cost+this.topping2.cost;}    
-    if (this.topping){return sum = this.size.cost+this.stuffing.cost+this.topping.cost;} 
-    return sum = this.size.cost+this.stuffing.cost
+    if (this.topping2 && this.topping){return sum = this.size.cost + this.stuffing.cost + this.topping.cost + this.topping2.cost;}
+    if (this.topping2){return sum = this.size.cost + this.stuffing.cost + this.topping2.cost;}    
+    if (this.topping){return sum = this.size.cost + this.stuffing.cost + this.topping.cost;} 
+    return sum = this.size.cost + this.stuffing.cost
 }
 Hamburger.prototype.calculateCalories = function () {
-    if (this.topping2&this.topping){return sum = this.size.kall+this.stuffing.kall+this.topping.kall+this.topping2.kall;}
-    if (this.topping2){return sum = this.size.kall+this.stuffing.kall+this.topping2.kall;}    
-    if (this.topping){return sum = this.size.kall+this.stuffing.kall+this.topping.kall;}  
-    return sum = this.size.kall+this.stuffing.kall;
+    if (this.topping2 && this.topping){return sum = this.size.kall + this.stuffing.kal + this.topping.kall + this.topping2.kall;}
+    if (this.topping2){return sum = this.size.kall + this.stuffing.kall + this.topping2.kall;}    
+    if (this.topping){return sum = this.size.kall + this.stuffing.kall + this.topping.kall;}  
+    return sum = this.size.kall + this.stuffing.kall;
 }
 Hamburger.prototype.getSize = function (){
     return this.size
@@ -63,7 +69,7 @@ Hamburger.prototype.getStuffing = function (){
 
 Hamburger.prototype.getToppings = function (){
     let arrTopping;
-    if (this.topping2&this.topping){arrTopping = [this.topping, this.topping2,]}
+    if (this.topping2 && this.topping){arrTopping = [this.topping, this.topping2,]}
     if (this.topping2){arrTopping = [this.topping2,]}    
     if (this.topping){arrTopping = [this.topping,]} 
     return arrTopping
@@ -114,4 +120,18 @@ function HamburgerException (message) {
 //  console.log(hamburger3);
 //  console.log(hamburger3.getSize());
 //  console.log("Is hamburger large: %s", hamburger3.getSize() === Hamburger.SIZE_LARGE)
- 
+
+
+let hamburger3 = new Hamburger(Hamburger.SIZE_SMALL, Hamburger.STUFFING_CHEESE);
+let h1=hamburger3;
+console.log(h1);
+console.log("Price with sauce: %f", hamburger3.calculatePrice());
+
+hamburger3.addTopping(Hamburger.TOPPING_SPICEd);
+let h12=hamburger3;
+console.log(h12);
+console.log("Price with sauce: %f", hamburger3.calculatePrice());
+
+hamburger3.addTopping(Hamburger.TOPPING_MAYO);
+console.log(hamburger3);
+console.log("Price with sauce: %f", hamburger3.calculatePrice());
