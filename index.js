@@ -5,12 +5,12 @@ const Hamburger = function(size, stuffing ){
    
         if((stuffing===Hamburger.STUFFING_CHEESE||stuffing===Hamburger.STUFFING_SALAD||stuffing===Hamburger.STUFFING_POTATO )){ this.stuffing = stuffing}
         else {
-            throw new HamburgerException(`invalid stuffing ${stuffing.name}`);
+            throw new HamburgerException(`invalid stuffing ${stuffing}`);
     }
             
 }
     else {
-        throw new HamburgerException(`invalid size ${size.name}`);
+        throw new HamburgerException(`invalid size ${size}`);
     } }
     catch(error){
         console.error("Error:", error.message);
@@ -31,7 +31,7 @@ Hamburger.prototype.addTopping = function (topping){
        if (this.topping){return this.topping2=topping}
        this.topping = topping;
      }else {
-            throw new HamburgerException(`invalid topping ${topping.name}`);
+            throw new HamburgerException(`invalid topping ${topping}`);
         }}
         catch(error){
             console.error("Error:", error.message);
@@ -124,7 +124,7 @@ let h1=hamburger3;
 console.log(h1);
 console.log("Price with sauce: %f", hamburger3.calculatePrice());
 
-hamburger3.addTopping(Hamburger.TOPPING_SPICEd);
+hamburger3.addTopping(Hamburger.TOPPING_SPICE);
 let h12=hamburger3;
 console.log(h12);
 console.log("Price with sauce: %f", hamburger3.calculatePrice());
