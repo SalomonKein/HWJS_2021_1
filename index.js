@@ -33,11 +33,11 @@ Hamburger.prototype.addTopping = function (topping) {
       topping === Hamburger.TOPPING_MAYO ||
       topping === Hamburger.TOPPING_SPICE
     ) {
-      if (topping !== this.topping || topping !== this.topping2) {
+      if (topping !== this.topping && topping !== this.topping2) {
         if (this.topping) {
           return (this.topping2 = topping);
         }
-        this.topping = topping;
+        return (this.topping = topping);
       } else {
         throw new HamburgerException(`This topping is invited`);
       }
@@ -131,30 +131,31 @@ function HamburgerException(message) {
 // console.log(hamburger.calculatePrice());
 // console.log(hamburger.calculateCalories());
 
-// маленький гамбургер с начинкой из сыра
-var hamburger2 = new Hamburger(Hamburger.SIZE_SMALL, Hamburger.STUFFING_CHEESE);
-// добавка из майонеза
-hamburger2.addTopping(Hamburger.TOPPING_MAYO);
-// спросим сколько там калорий
-console.log("Calories: %f", hamburger2.calculateCalories());
-// сколько стоит
-console.log("Price: %f", hamburger2.calculatePrice());
-// я тут передумал и решил добавить еще приправу
-hamburger2.addTopping(Hamburger.TOPPING_MAYO);
+// // маленький гамбургер с начинкой из сыра
+// var hamburger2 = new Hamburger(Hamburger.SIZE_SMALL, Hamburger.STUFFING_CHEESE);
+// // добавка из майонеза
+// hamburger2.addTopping(Hamburger.TOPPING_MAYO);
+// // спросим сколько там калорий
+// console.log("Calories: %f", hamburger2.calculateCalories());
+// // сколько стоит
+// console.log("Price: %f", hamburger2.calculatePrice());
+// // я тут передумал и решил добавить еще приправу
+// // hamburger2.addTopping(Hamburger.TOPPING_MAYO);
 //  hamburger2.addTopping(Hamburger.TOPPING_SPICE);
-//  hamburger2.addTopping(Hamburger.TOPPING_MAYO);
+// //  hamburger2.addTopping(Hamburger.TOPPING_MAYO);
 //  hamburger2.addTopping(Hamburger.TOPPING_SPICE);
-// А сколько теперь стоит?
-console.log("Price with sauce: %f", hamburger2.calculatePrice());
-// Проверить, большой ли гамбургер?
-console.log(
-  "Is hamburger large: %s",
-  hamburger2.getSize() === Hamburger.SIZE_LARGE
-); // -> false
-// Убрать добавку
-hamburger2.removeTopping(Hamburger.TOPPING_MAYO);
-console.log("Have %d toppings", hamburger2.getToppings().length); // 1
-console.log(hamburger2);
+// console.log(hamburger2);
+// // А сколько теперь стоит?
+// console.log("Price with sauce: %f", hamburger2.calculatePrice());
+// // Проверить, большой ли гамбургер?
+// console.log(
+//   "Is hamburger large: %s",
+//   hamburger2.getSize() === Hamburger.SIZE_LARGE
+// ); // -> false
+// // Убрать добавку
+// // hamburger2.removeTopping(Hamburger.TOPPING_MAYO);
+// console.log("Have %d toppings", hamburger2.getToppings().length); // 1
+// console.log(hamburger2);
 
 //  let hamburger3 = new Hamburger(Hamburger.SIZE_SMALL, Hamburger.SIZE_SMALL);
 //  console.log(hamburger3);
