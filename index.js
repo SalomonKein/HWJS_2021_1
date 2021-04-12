@@ -2,15 +2,12 @@ const Hamburger = function(size, stuffing ){
     try{
     if((size===Hamburger.SIZE_SMALL||size===Hamburger.SIZE_LARGE )){
     this.size = size
-    try{
+   
         if((stuffing===Hamburger.STUFFING_CHEESE||stuffing===Hamburger.STUFFING_SALAD||stuffing===Hamburger.STUFFING_POTATO )){ this.stuffing = stuffing}
         else {
             throw new HamburgerException(`invalid stuffing ${stuffing.name}`);
-    }}
-        catch(error){
-            console.error("Error:", error.message);
-        }
-    
+    }
+            
 }
     else {
         throw new HamburgerException(`invalid size ${size.name}`);
